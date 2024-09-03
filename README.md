@@ -1,6 +1,6 @@
 # BooksmartFrontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Figma Website Design: https://www.figma.com/design/eHIQj3XuzAOdN6WQIYAwfr/Untitled?node-id=0-1&t=9N1E7wjBJ84vsltI-1
 
 ## Recommended IDE Setup
 
