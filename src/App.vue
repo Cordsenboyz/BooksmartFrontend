@@ -1,85 +1,68 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+<script setup lang="jsx">
+import { RouterLink, RouterView } from 'vue-router';
+import { auth, userName } from '@/store.js'
+import NavComponent from '@/components/Nav/NavComponent.vue';
+import NavDealComponent from '@/components/Nav/NavDealsComponent.vue';
+import AddComponent from '@/components/Adds/AddComponent.vue';
+import { HubConnectionBuilder } from "@microsoft/signalr";
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
+    <NavDealComponent /> 
+    <NavComponent />
   </header>
 
-  <RouterView />
+  <main>
+    <AddComponent class="addComponent"/>
+    <RouterView class="routerView"/>
+    <AddComponent class="addComponent"/>
+  </main>
 </template>
 
+<script lang="jsx">
+export default {
+  created(){
+    var token = this.$cookies.get("token")
+    if(token){
+      auth.IsAuthenticated = true;
+      var base64Url = token.split('.')[1];
+      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      var tokenValues = JSON.parse(jsonPayload)
+      userName.value = tokenValues.name
+    }
+
+    const connection = new HubConnectionBuilder()
+        .withUrl("https://booksmartapi.azurewebsites.net/Store")
+        .build();
+
+    connection.start();
+    
+    connection.on("Test", data => {
+      console.log(data);
+    })
+  }
+}
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
+main{
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  min-height: calc(100vh - 5.5rem);
+  display: flex;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.addComponent{
+  width: 10%;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.routerView{
+  width: 80%;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
 
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
