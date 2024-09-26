@@ -8,7 +8,7 @@ import ActionBar from '@/components/Nav/ActionBar.vue';
 <template>
     <div class="authMain-div">
         <ActionBar>
-            <font-awesome-icon :icon="['fas', 'arrow-left']" @click="this.$router.go(-1)"/>
+            <font-awesome-icon :icon="['fas', 'arrow-left']" @click="$router.go(-1)"/>
         </ActionBar>
         <div class="authContainer-div">
             <div class="authItem-div">

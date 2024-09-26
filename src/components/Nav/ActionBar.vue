@@ -6,8 +6,8 @@ import { auth } from '@/store.js';
     <div class="actionMain-div">
         <slot></slot>
         <div class="iconContainer-div">
-            <font-awesome-icon :icon="['fas', 'user']" @click="this.$router.push('/user')" v-if="auth.IsAuthenticated"/>
-            <font-awesome-icon :icon="['fas', 'cart-shopping']" @click="this.$router.push('/cart')"/>
+            <font-awesome-icon :icon="['fas', 'user']" @click="$router.push('/user')" v-if="auth.IsAuthenticated"/>
+            <font-awesome-icon :icon="['fas', 'cart-shopping']" @click="$router.push('/cart')"/>
         </div>
     </div>
 </template>

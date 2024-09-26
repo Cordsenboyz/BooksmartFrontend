@@ -36,7 +36,7 @@ export default {
       userName.value = tokenValues.name
     }
 
-    const connection = new HubConnectionBuilder()
+    /*const connection = new HubConnectionBuilder()
         .withUrl("https://booksmartapi.azurewebsites.net/Store")
         .build();
 
@@ -44,7 +44,7 @@ export default {
     
     connection.on("Test", data => {
       console.log(data);
-    })
+    })*/
   }
 }
 </script>

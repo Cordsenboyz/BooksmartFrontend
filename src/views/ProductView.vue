@@ -7,7 +7,7 @@ import axios from 'axios'
 <template>
   <div class="productMain-div">
     <ActionBar>
-      <font-awesome-icon :icon="['fas', 'arrow-left']" @click="this.$router.go(-1)"/>
+      <font-awesome-icon :icon="['fas', 'arrow-left']" @click="$router.go(-1)"/>
     </ActionBar>
     <div class="itemMain-div">
       <div class="itemDisplay-div">

@@ -31,7 +31,7 @@ import { auth } from '@/store.js'
             <input v-model="RegisterObject.phoneNumber"/>
         </div>
         <div class="btnContainer-div">
-            <button @click="this.emitter.emit('Cancel')">Cancel</button>
+            <button @click="emitter.emit('Cancel')">Cancel</button>
             <button @click="Register()">Register</button>
         </div>
     </div>
@@ -59,6 +59,7 @@ export default {
     methods: {
         async Register(){
             console.log(this.loginObject)
+            console.log(this.RegisterObject)
             await axios.post(`https://booksmartapi.azurewebsites.net/api/Auth/Register`, this.RegisterObject)
                 .then(async response => {
                     this.loginObject.email = this.RegisterObject.email

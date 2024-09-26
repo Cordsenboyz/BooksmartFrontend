@@ -7,7 +7,7 @@ import axios from 'axios';
 <template lang="">
     <div class="userMain-div" v-if="auth.IsAuthenticated">
         <ActionBar>
-            <font-awesome-icon :icon="['fas', 'arrow-left']" @click="this.$router.go(-1)"/>
+            <font-awesome-icon :icon="['fas', 'arrow-left']" @click="$router.go(-1)"/>
         </ActionBar>
         <div>{{ Orders }}</div>
     </div>

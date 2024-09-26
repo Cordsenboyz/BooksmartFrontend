@@ -15,7 +15,7 @@ import { auth, userName } from '@/store.js'
             <input v-model="loginObject.password" type="password"/>
         </div>
         <div class="btnContainer-div">
-            <a @click="this.emitter.emit('Register')">Register</a>
+            <a @click="emitter.emit('Register')">Register</a>
             <button @click="Login()">Login</button>
         </div>
     </div>

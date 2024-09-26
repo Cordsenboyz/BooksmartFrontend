@@ -5,12 +5,12 @@ import { auth, userName } from '@/store.js'
 <template lang="">
     <div class="navMain-div">
         <div class="nav20 flexstart">
-            <p @click="this.$router.push('/')">Booksmart</p>
+            <p @click="$router.push('/')">Booksmart</p>
         </div>
         <div class="nav60"></div>
         <div class="nav20 flexend">
             <p v-if="auth.IsAuthenticated">{{ userName.value }}</p>
-            <p v-else @click="this.$router.push('/login')">Login</p>
+            <p v-else @click="$router.push('/login')">Login</p>
         </div>
     </div>
 </template>
