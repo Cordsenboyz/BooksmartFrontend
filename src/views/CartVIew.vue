@@ -55,7 +55,7 @@ export default {
             });
             
 
-            await axios.post('https://booksmartapi.azurewebsites.net/Order/Create', this.orderObject, {
+            await axios.post('https://booksmartapi.azurewebsites.net/api/Order/Create', this.orderObject, {
                 headers: { Authorization: `Bearer ${this.$cookies.get('token')}` }
             }).then(async response => {
                 console.log(response)
